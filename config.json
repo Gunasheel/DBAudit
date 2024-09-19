@@ -1,0 +1,395 @@
+{
+    "CONSTANT" : {
+      "DEBUG" : true,
+      "EZEONE_URL" : "https://www.ezeone.com",
+      "INDEX_PATH" : "../public/index.html",
+      "GOOGLE_KEYFILE_PATH" : "../ezeid100.json",
+      "GOOGLE_PROJECT_ID" : "ezeid100",
+      "INDEX_TPL" : "index.ejs",
+      "ALUMNI_INDEX_PATH" : "../public-alumni/index.html",
+      "MAP_REDIRECT_LINK" : "/map",
+      "STATIC_URL": "/",
+      "STORAGE_BUCKET":"ezeone",
+      "STORAGE_BUCKET_SK" : "ezeone",
+      "GS_URL":"https://storage.googleapis.com/",
+      "ANDROID_AP_VERSION_CODE":6,
+      "ANDROID_CRASH_REPORT_DIR" : "crash_report",
+      "EZEONE_CRASH_REPORT_DIR" : "ezeone_crash_report",
+      "GROUP_ICON_URL" : "http://icons.iconarchive.com/icons/blackvariant/button-ui-system-folders-alt/512/Group-icon.png",
+      "EZEONE_MAILING_LIST" : [
+        "sujit.mishra3147@gmail.com"
+      ],
+      "EZEONE_MESSAGE_ACCEPT_STATUS":1,
+      "EZEONE_MESSAGE_REJECT_STATUS":2,
+      "EZEONE_MESSAGE_LEAVE_STATUS": 3,
+      "EZEONE_MESSAGE_REMOVE_STATUS":4,
+      "API_URL" : "http://104.199.128.226:3001/api/"
+    },
+    "SCHEME" : "https",
+    "DOMAIN" : "www.ezeone.com",
+    "PASS_RESET_PAGE_LINK" : "reset_password",
+    "DB_PASS" : "",
+    "DB_HOST" : "",
+    "PDF_SERVER" : {
+      "HOST" : "127.0.0.1",
+      "PORT" : 9111
+    },
+    "APNS" : {
+      "GATEWAY" : "gateway.sandbox.push.apple.com",
+      "PASSPHRASE" : "hire@123",
+      "WHATMATEPASSPHRASE" : "what123",
+      "PORT" : 2195
+    },
+    "MQTT" : {
+      "ADMIN" : ["@indrajeet", "@hvj", "@ind1","@sandeep"],
+      "HOST" : "104.199.128.226",
+      "ADMIN_HOST" : "104.199.128.226",
+      "ADMIN_PORT" : "12345",
+      "ADMIN_PROTOCOL" : "http",
+      "PORT" : 61612,
+      "AMQP_PORT" : 5672,
+      "USERNAME" : "indrajeet",
+      "PASSWORD" : "indrajeet",
+      "VHOST" : "%2f"
+    },
+    
+    "VERSION_LIST" : {
+      "IOS" : [[],[23,24]],
+      "ANDROID" : [45],
+      "WhatMateIOS" : [[],[27,28]],
+      "WhatMateANDROID" : [45],
+      "dialerIOS" : [[],[1,2]],
+      "dialerANDROID" : [8],
+      "WEB" : [1]
+    },
+    "NOTIFICATION" : {
+      "TEMPLATES": {
+        "institute_candidate_job_suggestion": {
+          "params": [
+            "jobType",
+            "jobTitle",
+            "jobCode",
+            "companyName"
+          ],
+          "file": "job/institute-candidate-job-suggestion.txt"
+        },
+        "individual_candidate_job_suggestion": {
+          "params": [
+            "jobType",
+            "jobTitle",
+            "jobCode",
+            "companyName"
+          ],
+          "file": "job/individual-candidate-job-suggestion.txt"
+        },
+        "placement_officer_unverified_job_alert": {
+          "params": [
+            "companyName"
+          ],
+          "file": "job/placement-officer-unverified-job-alert.txt"
+        },
+        "placement_officer_job_approval": {
+          "params": [
+            "jobType",
+            "jobTitle",
+            "jobCode",
+            "companyName"
+          ],
+          "file": "job/placement-officer-job-approval.txt"
+        },
+        "add_members_to_group": {
+          "params": [
+            "groupName",
+            "adminName"
+          ],
+          "file": "message/members-to-group.txt"
+        },
+        "join_group": {
+          "params": [
+            "groupName",
+            "fullName"
+          ],
+          "file": "message/join-group.txt"
+        },
+        "auto_join_group": {
+          "params": [
+            "groupName",
+            "fullName"
+          ],
+          "file": "message/auto-join-group.txt"
+        },
+        "change_admin": {
+          "params": [
+            "oldAdminName",
+            "groupName"
+          ],
+          "file": "message/change-group-admin.txt"
+        },
+        "leave_group": {
+          "params": [
+            "memberName",
+            "groupName"
+          ],
+          "file": "message/leave-group.txt"
+        },
+        "delete_group": {
+          "params": [
+            "groupName"
+          ],
+          "file": "message/delete-group.txt"
+        },
+        "accept_request": {
+          "params": [
+            "adminName",
+            "groupName"
+          ],
+          "file": "message/accept-request.txt"
+        },
+        "reject_request": {
+          "params": [
+            "adminName",
+            "groupName"
+          ],
+          "file": "message/reject-request.txt"
+        },
+        "removed_from_group": {
+        "params": [
+          "adminName",
+          "groupName"
+        ],
+        "file": "message/remove-member.txt"
+      },
+        "compose_message": {
+          "params": [
+            "senderName"
+          ],
+          "file": "message/compose-message.txt"
+        },
+        "compose_message_group": {
+          "params": [
+            "senderName",
+            "groupName"
+          ],
+          "file": "message/compose-message-group.txt"
+        },
+        "message_deleted": {
+          "params" : [
+            "groupName"
+          ],
+          "file" : "message/message-deleted.txt"
+        }
+      }
+    },
+    "MAIL": {
+      "APP_NAME": "EZEOne",
+      "MAIL_USER": "root",
+      "MAIL_PASS": "Password",
+      "SENDER": "noreply@talentmicro.com",
+      "DISCLAIMER": "Copyright &copy; Example",
+      "OPTIONS": null,
+      "TEMPLATES": {
+        "generic" : {
+          "params" : [
+            "innerTemplate"
+          ],
+          "file": "generic.html",
+          "subject": ""
+        },
+        "placement_officer_unverified_job_alert": {
+          "params": [
+            "companyName"
+          ],
+          "file": "job/placement-officer-unverified-job-alert.html",
+          "subject" : "New job posted for your institute - Get verified"
+        },
+        "placement_officer_job_approval": {
+          "params": [
+            "jobType",
+            "jobTitle",
+            "jobCode",
+            "companyName",
+            "keySkills",
+            "jobId"
+          ],
+          "file": "job/placement-officer-job-approval.html",
+          "subject" : "New job posted for your institute"
+        },
+        "individual_candidate_job_suggestion" : {
+          "params" : [
+            "firstName",
+            "jobType",
+            "jobTitle",
+            "jobCode",
+            "companyName",
+            "keySkills",
+            "jobId"
+          ],
+          "file": "job/individual-candidate-job-suggestion.html",
+          "subject": "New Job Alert from EZEOne"
+        },
+        "institute_candidate_job_suggestion" : {
+          "params" : [
+            "firstName",
+            "jobType",
+            "jobTitle",
+            "jobCode",
+            "companyName",
+            "keySkills",
+            "jobId"
+          ],
+          "file": "job/institute-candidate-job-suggestion.html",
+          "subject": "New Job Alert from your institute"
+        },
+        "register": {
+          "params": [
+            "fullName",
+            "ezeoneId"
+          ],
+          "file": "registration.html",
+          "subject": "Welcome to EZEOneID"
+        },
+        "sales": {
+          "params": [
+            "email",
+            "fullName",
+            "ezeone",
+            "status",
+            "message",
+            "ezeoneId"
+          ],
+          "file": "salesNew.html",
+          "subject": "Sales Enquiry"
+        },
+        "cv": {
+          "params": [
+            "EMAIL",
+            "FULLNAME",
+            "EZEOneID",
+            "STATUS",
+            "MESSAGE",
+            "FUNCTION",
+            "KEYSKILLS",
+            "URL"
+          ],
+          "file": "cv.html",
+          "subject": "Resume Request"
+        },
+        "password_change": {
+          "params": [
+            "EMAIL",
+            "FULLNAME",
+            "BROWSER",
+            "IP",
+            "TIME"
+          ],
+          "file": "password-change.html",
+          "subject": "Password Reset"
+        },
+        "reset_password": {
+          "params": [
+            "EMAIL",
+            "FULLNAME",
+            "BROWSER",
+            "IP",
+            "TIME",
+            "RESET_CODE"
+          ],
+          "file": "reset-password.html",
+          "subject": "Forgot Password"
+        },
+        "proposal_template" : {
+          "params" : ["Name","RequirementDescription","LoggedInName","email","mobile"],
+          "file" : "proposal_template.html",
+          "subject" : "Proposal Details"
+        },
+        "sales_lead_template" : {
+          "params" : ["ezeoneId", "message"],
+          "file" : "sales_enquiry_mail.html",
+          "subject" : "Sales Enquiry"
+        },
+        "job_post_template" : {
+          "params" : ["userName", "JobType", "JobTitle", "JobCode", "CompanyName"],
+          "file" : "job_post_mail.html",
+          "subject" : "New Job"
+        },
+        "job_apply_comapney_template" : {
+          "params" : ["ezeoneId", "JobType", "JobTitle", "JobCode", "DateTime"],
+          "file" : "job_apply_company.html",
+          "subject" : "Candidate applied to Job "
+        },
+        "invoice" : {
+          "params" : ["communityAddress","memberName","memberAddress","billDate","startDate","endDate","totalAmount","dueDate","adminName","type","area","refNo","expenseList","imageUrl"],
+          "file" : "invoice.html",
+          "subject" : "invoice Details"
+        },
+        "crash_report" : {
+          "params" : ["crashReport", "projectName"],
+          "file" : "crash-report.html",
+          "subject" : "Crash Report Details"
+        },
+        "expenseClaim": {
+          "params": ["name","senderName"],
+          "file": "expenseClaim.html",
+          "subject": "Expense Claim"
+        },
+        "travelClaim": {
+          "params": ["name","senderName"],
+          "file": "travelClaim.html",
+          "subject": "Travel Claim"
+        },
+        "default": {
+          "params": ["HTML"],
+          "file": "default.html",
+          "subject": ""
+        },
+        "NewUserUpload": {
+          "params": ["name","UserName","Password"],
+          "file": "NewUserUpload.html",
+          "subject": "Your user Credentials for WhatMate App"
+        },
+        "existingUsers": {
+          "params": ["name","UserName","CompanyName"],
+          "file": "existingUsers.html",
+          "subject": "Your user Credentials for WhatMate App"
+        },
+        "ResendCredentials": {
+          "params": ["name","UserName","Password"],
+          "file": "ResendCredentials.html",
+          "subject": "Your user Credentials for WhatMate App"
+        }
+      }
+    },
+    "RESERVED_EZEONE_LIST" : ["API","MEDIA","WWW","STATIC","SUPPORT","HELP","BETA","MAIL","MESSANGER","CHAT","NOTIFICATION","CDN",
+        "SERVER[0-9]+","NS[0-9]+","MS[0-9]"],
+    "DB": {
+        "secretKey" : "t@LeNtMiCr0Wh@tM@te",
+       
+        "aKey" : "T@MiCr097124!iCR" 
+  
+    },
+    "OPEN_URL" : {
+      "GET" : [
+  
+      ],
+      "POST" : [
+  
+      ],
+      "PUT" : [],
+      "DELETE" : [],
+      "HEAD" : [],
+      "OPTIONS" : [
+  
+      ]
+    },
+    "MESSAGE" : {
+    },
+    "SIGNUPDATA" :
+  { "IndividualDetail":{ "title":"Individual", "Features":[ { "status":true, "title":"Unique ID linked to Geo Code" }, { "status":true, "title":"Profile & Document Wallet to share with others" }, { "status":true, "title":"Find a Person by ID or nearby Business by product name & Navigate to Doorstep" }, { "status":true, "title":"Message Box for Chat" } ] }, "BusinessDetail":{ "title":"Business", "Features":[ { "status":true, "title":"Unique ID linked to Geo Code" }, { "status":true, "title":"Profile & Document Wallet to share with others" }, { "status":true, "title":"Find a Person by ID or nearby Business by product name & Navigate to Doorstep" }, { "status":true, "title":"Message Box for Chat" } ] }, "PublicPlaceDetails":{ "title":"Public Place", "Features":[ { "status":true, "title":"Unique ID linked to Geo Code" }, { "status":true, "title":"Profile & Document Wallet to share with others" }, { "status":true, "title":"Find a Person by ID or nearby Business by product name & Navigate to Doorstep" }, { "status":true, "title":"Message Box for Chat" } ] }, "InstituteDetail":{ "title":"Educational Institute", "Features":[ { "status":true, "title":"Unique ID linked to Geo Code" }, { "status":true, "title":"Profile & Document Wallet to share with others" }, { "status":true, "title":"Find a Person by ID or nearby Business by product name & Navigate to Doorstep" }, { "status":true, "title":"Message Box for Chat" } ] }, "FreeListingDetails":{ "title":"Free Listing", "Features":[ { "status":true, "title":"Unique ID linked to Geo Code" }, { "status":true, "title":"Profile & Document Wallet to share with others" }, { "status":true, "title":"Find a Person by ID or nearby Business by product name & Navigate to Doorstep" }, { "status":true, "title":"Message Box for Chat" } ] }, "BasicListingDetails":{ "title":"Basic Listing", "price":"Paid", "Features":[ { "status":true, "title":"Lifetime ID as per customer choice linked to Geo Code(GPS Location) to help customers locate your business and navigate to your door step" }, { "status":true, "title":"100 Keywords to index your business" }, { "status":true, "title":"Business Promotion Banners (1 Banner)" }, { "status":true, "title":"Verification of Business on EZEOne Platform" }, { "status":true, "title":"Discount Sales/Promotion Announcement Option" }, { "status":true, "title":"Publish Office Work Hours & Holiday Calendar" }, { "status":true, "title":"Unlimited Enterprise Messaging/Chat system" } ] }, "StandardListingDetails":{ "title":"Standard Listing", "price":"Paid", "Features":[ { "status":true, "title":"Lifetime ID as per customer choice linked to Geo Code(GPS Location) to help customers locate your business and navigate to your door step" }, { "status":true, "title":"500 Keywords to index your business" }, { "status":true, "title":"Business Promotion Banners (Up to 5 Banners)" }, { "status":true, "title":"Verification of Business on EZEOne Platform" }, { "status":true, "title":"Discount Sales/Promotion Announcement Option" }, { "status":true, "title":"Publish Office Work Hours & Holiday Calendar" }, { "status":true, "title":"Unlimited Enterprise Messaging/Chat system" }] }, "PremiumListingDetails":{ "title":"Premium Listing", "price":"Paid", "Features":[ { "status":true, "title":"1000 Keywords to index your business" }, { "status":true, "title":"Enquiry Form to help buyers send Business Enquiries, Submit Resume form to help jobseekers submit their resume and online Business Chat button for instant business communication" } ] }, "EnterpriseListingDetails":{ "title":"Enterprise Listing", "price":"Paid", "Features":[ { "status":true, "title":"2000 Keywords to index your business" }, { "status":true, "title":"Cloud software to manage Sales Leads and Recruitment Process (5 User License included)" }, { "status":true, "title":"Job Postings, Internship Postings to receive Resumes from interested and matching Jobseekers" }] }, "InstituteFreeListingDetails":{ "title":"Free Listing", "Features":[ { "status":true, "title":"Unique ID linked to Geo Code" }, { "status":true, "title":"Profile & Document Wallet to share with others" }, { "status":true, "title":"Find a Person by ID or nearby Business by product name & Navigate to Doorstep" }, { "status":true, "title":"Message Box for Chat" } ] }, "InastitutePaid":{ "title":"Sponsored Listing", "price":"Paid", "Features":[ { "status":true, "title":"2000 Keywords to index your business" }, { "status":true, "title":"Cloud software to manage Sales Leads and Recruitment Process (5 User License included)" }, { "status":true, "title":"Job Postings, Internship Postings to receive Resumes from interested and matching Jobseekers" }] } }
+  
+  }
+  
+  
+  
+  
+  
+  
