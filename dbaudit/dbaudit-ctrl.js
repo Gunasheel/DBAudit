@@ -1,10 +1,12 @@
 var request = require('request');
 
-// var conn = require('../database');
+ var conn = require('../database');
+ //const dbConfig = require('./path_to_config_file');
+const db = conn.getDBContext();
 // var compression = require('../compression')
 // const { stringify } = require('querystring');
 // var loginTypeModule = require('../Modules/login');
-// var commonFunction = require('../commonFunction');
+ var commonFunction = require('../commonFunction');
 // var bcrypt = null;
 // try {
 //     bcrypt = require('bcrypt-nodejs');
@@ -14,10 +16,11 @@ var request = require('request');
 //     bcrypt = require('bcrypt-nodejs');
 // }
 
-// var zlib = require('zlib');
+ var zlib = require('zlib');
 var appConfig = require('../config.json');
  var AES_256_encryption = require('../encryption');
  var encryption = new AES_256_encryption();
+
 // const aKey = appConfig.DB.aKey;
 // var crypto = require('crypto');
 
@@ -274,8 +277,45 @@ var dbms = {};
 // };
 
 
+ /*
+function validateClient(token, req, callback) {
+    if (!token) {
+        return callback(new Error('Token is missing'), null);
+    }
+    console.log(token);
+    
+    // Define the query to call your Stored Procedure (SP)
+    const query = 'CALL icr_audit_validate_token_Client(?)'; // Replace 'validate_token_sp' with your actual SP name
+    console.log(query);
+    // Execute the stored procedure
+    req.db.query(query, [token], function (err, result) {
+        console.log('Query executed.');
 
+        if (err) {
+            // Handle any SQL error
+            return callback(new Error('Database error during token validation'), null);
+        }
 
+        // Check if the SP returned any data
+        if (result && result[0] && result[0][0]) {
+            // Assume the SP returns a 'valid' column that indicates if the token is valid
+            const tokenResult = result[0][0];
+            
+            if (tokenResult.valid) {
+                // Token is valid, pass the result to the callback
+                return callback(null, tokenResult);
+            } else {
+               
+                return callback(new Error('Invalid token'), null);
+            }
+        } else {
+            // No result returned from the SP
+            return callback(new Error('Token not found or invalid'), null);
+        }
+    });
+}
+
+*/
 
 
 
@@ -318,10 +358,20 @@ dbms.getUserData = function (req, res, next) {
             // commonFunction.validateToken(req.query.token, function (err, tokenResult) {
             //     try {
             //         if ((!err) && !(!(tokenResult))) {
+   
+   console.log(req.query.token)
+   console.log(req.headers.clientid)
+    //console.log(req)npm npm start
 
-            req.st.validateToken(req.query.token, function (err, tokenResult) {
-                if ((!err) && tokenResult) {
-                    var decryptBuf = encryption.decrypt1((req.body.data), tokenResult[0].secretKey);
+    commonFunction.validateToken(req.headers.clientid, req,function (err, tokenResult) {
+
+        console.log(tokenResult)
+        
+        console.log(err)
+                //if ((!err) && tokenResult)
+                    if (!err && tokenResult) {
+                    console.log(tokenResult)
+                    var decryptBuf = encryption.decrypt1((req.body.data), tokenResult.clientsecret);
                     zlib.unzip(decryptBuf, function (_, resultDecrypt) {
                         try {
                             req.body = resultDecrypt ? JSON.parse(resultDecrypt.toString('utf-8')) : req.body;
@@ -332,16 +382,20 @@ dbms.getUserData = function (req, res, next) {
 
 
 
-
-
-
-
-
                             function logDifferences(differences) {
                                 differences.forEach(diff => {
-                                    const query = 'CALL icr_Audit_logs_SP(?, ?, ?,?,?)';
 
-                                    req.db.query(query, [diff.parameter, diff.inputValue, diff.responseValue, diff.idKey, req.body["tableId"]], (err, results) => {
+                                    var diffinputs = [
+                                        req.st.db.escape(diff.parameter),
+                                        req.st.db.escape(diff.inputValue),
+                                        req.st.db.escape(diff.responseValue),
+                                        req.st.db.escape(diff.idKey),
+                                        req.st.db.escape(req.body["tableId"] || 0)
+                                    ];
+
+                                    var query = 'CALL icr_Audit_logs_SP(' + diffinputs.join(',') + ')';
+
+                                    req.db.query(query, function (err, results)  {
                                         if (err) {
                                             console.error('Error logging difference:', err);
                                             return;
@@ -426,8 +480,8 @@ dbms.getUserData = function (req, res, next) {
                                             message: result[0][0].message || "Data saved successfully",
                                             error: null,
                                             data: {
-                                                list: result[1] ? result[1] : [],
-                                                differences: differences // Include differences in the response
+                                               // list: result[1] ? result[1] : [],
+                                                //differences: differences // Include differences in the response
                                             }
                                         };
 
@@ -483,6 +537,13 @@ dbms.getUserData = function (req, res, next) {
                         }
                     });
                 }
+                else
+                {
+                    console.log('Data came to Else',err);
+                    console.log(err);
+                    response.message = 'Invalid Authentication';
+                    res.status(401).json(response);
+                }
             });
 
 
@@ -534,6 +595,22 @@ dbms.getUserLogData = function (req, res, next) {
         try {
 
 
+            
+    commonFunction.validateToken(req.headers.clientid, req,function (err, tokenResult) {
+
+        console.log(tokenResult)
+        
+        console.log(err)
+                //if ((!err) && tokenResult)
+                    if (!err && tokenResult) {
+                    console.log(tokenResult)
+                    var decryptBuf = encryption.decrypt1((req.body.data), tokenResult.clientsecret);
+                    zlib.unzip(decryptBuf, function (_, resultDecrypt) {
+                        try {
+                            req.body = resultDecrypt ? JSON.parse(resultDecrypt.toString('utf-8')) : req.body;
+                            console.log(req.body);
+                            var validationFlag = true;
+
 
             var inputs = [
                 req.st.db.escape(req.query.token),
@@ -580,6 +657,23 @@ dbms.getUserLogData = function (req, res, next) {
                     res.status(500).json(response);
                 }
             });
+
+        }
+        catch (err) {
+            console.log(err);
+
+            res.status(401).json(response);
+        }
+    });
+}
+else
+{
+    console.log('Data came to Else',err);
+    console.log(err);
+    response.message = 'Invalid Authentication';
+    res.status(401).json(response);
+}
+});
 
         }
         catch (ex) {

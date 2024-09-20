@@ -8,8 +8,8 @@ var dbmsCtrl = require('./dbaudit-ctrl');
 // router.post('/saveSyncConfigData', dbmsCtrl.saveSyncConfigData);
 // router.post('/getSyncConfigData', dbmsCtrl.getSyncConfigData);
 
-router.post('/getAuditUserData', dbmsCtrl.getUserData);
+router.post('/saveAuditData', dbmsCtrl.getUserData);
 
-router.get('/getAuditLogData', dbmsCtrl.getUserLogData);
+router.post('/getAuditData', dbmsCtrl.getUserLogData);
 
 module.exports = router;

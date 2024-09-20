@@ -39,3 +39,7 @@ exports.getDBContext = function () {
     return pool;
 
 };
+
+
+//module.exports = pool;
+
